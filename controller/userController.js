@@ -47,12 +47,14 @@ module.exports.login = async (req,res,next) => {
 
 
 module.exports.userprofile = async (req,res) => {
-    const {id} = req.params;
+   try{ const {id} = req.params;
     const user = await User.findById(id);
     res.status(200).json({
         success: true,
         username: user.name
-    })
+    })}catch(err){
+        return next(new ErrorHandler(401, err.message))
+    }
 }
 
 module.exports.logout = async (req,res) => {
