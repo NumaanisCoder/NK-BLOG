@@ -46,9 +46,9 @@ module.exports.login = async (req,res,next) => {
 }
 
 
-module.exports.userprofile = async (req,res) => {
+module.exports.userprofile = async (req,res,next) => {
    try{ const {id} = req.params;
-    const user = await User.findById(id);
+    const user = await User.findById('gfdytyrd');
     res.status(200).json({
         success: true,
         username: user.name
