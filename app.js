@@ -7,6 +7,7 @@ const userRouter = require('./routes/userRoutes');
 const blogRouter = require('./routes/blogRoutes');
 const { DBConnection } = require('./config/db');
 const bodyParser = require('body-parser');
+const blog = require('./module/blog');
 
 
 //body-parser to parse the data from body in POST method.
@@ -22,9 +23,11 @@ app.use(blogRouter);
 DBConnection();
 
 
-app.get('/', (req,res)=>{
+app.get('/', async (req,res)=>{
+    const blogs = await blog.find({});
     res.status(200).json({
-        message: "Server is ok"
+        message: "Server is ok",
+        blogs: blogs
     })
 })
 
