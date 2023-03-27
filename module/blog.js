@@ -14,8 +14,16 @@ const blogSchema = new Schema({
         type:String,
         required: [true, 'blog content must required']
     },
+    category: {
+        type: String,
+        enum: ['Technology','Programming','Wildlife','Education','Personal thought','Travel','Video Games','Anime','Movie','Sports','News'],
+        required: true},
     user:{
         type: mongoose.Types.ObjectId
+    },
+    createdAt:{
+        type: Number,
+        default: Date.now()
     }
 })
 

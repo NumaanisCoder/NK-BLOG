@@ -34,6 +34,7 @@ app.get('/', async (req,res)=>{
 app.use((err,req,res,next)=>{
     const {status, message} = err;
     res.status(status).send({
+        success: false,
         status: status,
         message: message
     })

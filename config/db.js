@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 module.exports.DBConnection = () => {
 
-    mongoose.connect('mongodb+srv://numaanqureshi:12345@cluster0.lrboy7t.mongodb.net/NKBLOG-APPLICATION')
+    mongoose.connect('mongodb://localhost:27017/NKBLOG-APPLICATION')
     .then(()=>{
         console.log("DB CONNECTED");
     })

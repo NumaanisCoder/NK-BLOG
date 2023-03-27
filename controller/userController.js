@@ -5,10 +5,11 @@ const { sendToken } = require("../utils/sendToken");
 const jwt = require("jsonwebtoken");
 
 module.exports.createUser = async (req, res, next) => {
+  try{
   const { name, email, password } = req.body;
   const test_user = await User.findOne({ email: email });
   if (test_user) {
-    return next(new ErrorHandler(404, "user already registered"));
+    return next(new ErrorHandler(409, "email had already registered"));
   }
   const user = new User({ name, email, password });
   user.save();
@@ -22,6 +23,9 @@ module.exports.createUser = async (req, res, next) => {
     success: true,
     message: "user created successfully",
   });
+}catch(e){
+  console.log(e);
+}
 };
 
 module.exports.login = async (req, res, next) => {
@@ -55,7 +59,7 @@ module.exports.userprofile = async (req, res, next) => {
     const user = await User.findById(id);
     res.status(200).json({
       success: true,
-      username: user.name,
+      message: user
     });
   } catch (err) {
     return next(new ErrorHandler(401, err.message));

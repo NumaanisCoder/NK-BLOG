@@ -1,3 +1,5 @@
+// let regex = /^'+'/
 
-console.log(new Date(Date.now()));
-console.log(new Date(Date.now() + 5 * 5 * 60 * 60 * 1000));
+// let number = "+919858958938"
+
+// console.log(regex.test(number))
