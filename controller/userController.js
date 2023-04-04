@@ -23,10 +23,11 @@ module.exports.createUser = async (req, res, next) => {
     { password: await bcrypt.hash(password, 12) },
     { new: true }
   );
-  sendToken(user, res);
+  const token = sendToken(user, res);
   res.status(201).json({
     success: true,
     status: 201,
+    token:token,
     message: "user created successfully"
   });
 }catch(e){
