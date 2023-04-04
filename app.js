@@ -8,11 +8,16 @@ const blogRouter = require('./routes/blogRoutes');
 const { DBConnection } = require('./config/db');
 const bodyParser = require('body-parser');
 const blog = require('./module/blog');
+const cors = require('cors')
 
 
 //body-parser to parse the data from body in POST method.
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cors({
+    origin: 'http://localhost:3001',
+    credentials: true
+  }));
 
 //middlewares
 app.use(cookie());
@@ -23,8 +28,8 @@ app.use(blogRouter);
 DBConnection();
 
 
-app.get('/', async (req,res)=>{
-    const blogs = await blog.find({});
+app.get('/get', async (req,res)=>{
+    const blogs = await blog.find({}).populate("user").sort({_id: -1}).exec();
     res.status(200).json({
         message: "Server is ok",
         blogs: blogs
@@ -38,8 +43,9 @@ app.use((err,req,res,next)=>{
         status: status,
         message: message
     })
+    console.log(err);
 })
 
 app.listen(port , ()=>{
-    console.log(`Server is On ${port}`);
+    console.log(`Server is On http://localhost:${port}/`);
 })

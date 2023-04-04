@@ -4,7 +4,7 @@ const { createUser, login, userprofile, logout } = require('../controller/userCo
 
 const router = express.Router();
 
-router.route('/').post(homecontent);
+// router.route('/').post(homecontent);
 router.route('/signup').post(createUser);
 router.route('/login').post(login);
 router.route('/user/:id').get(userprofile);

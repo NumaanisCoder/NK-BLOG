@@ -17,9 +17,10 @@ const blogSchema = new Schema({
     category: {
         type: String,
         enum: ['Technology','Programming','Wildlife','Education','Personal thought','Travel','Video Games','Anime','Movie','Sports','News'],
-        required: true},
+        required: true
+    },
     user:{
-        type: mongoose.Types.ObjectId
+        type: mongoose.Types.ObjectId, ref:'user'
     },
     createdAt:{
         type: Number,

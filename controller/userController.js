@@ -6,12 +6,17 @@ const jwt = require("jsonwebtoken");
 
 module.exports.createUser = async (req, res, next) => {
   try{
-  const { name, email, password } = req.body;
+  const { username, email, password } = req.body;
   const test_user = await User.findOne({ email: email });
+  const test_user2 = await User.findOne({ username: username });
+
+  if(test_user2){
+    return next(new ErrorHandler(409, "username already taken"));
+  }
   if (test_user) {
     return next(new ErrorHandler(409, "email had already registered"));
   }
-  const user = new User({ name, email, password });
+  const user = new User({ username, email, password });
   user.save();
   await User.findOneAndUpdate(
     { email: email },
@@ -21,7 +26,8 @@ module.exports.createUser = async (req, res, next) => {
   sendToken(user, res);
   res.status(201).json({
     success: true,
-    message: "user created successfully",
+    status: 201,
+    message: "user created successfully"
   });
 }catch(e){
   console.log(e);

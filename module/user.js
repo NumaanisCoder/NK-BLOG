@@ -2,9 +2,9 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const userSchema =new Schema({
-    name:{
+    username:{
         type: String,
-        required: [true, 'user name is required']
+        required: [true, 'username is required']
     },
     avatar:{
         type: String
@@ -24,4 +24,4 @@ const userSchema =new Schema({
     ]
 })
 
-module.exports = mongoose.model('USER',userSchema);
+module.exports = mongoose.model('user',userSchema);
