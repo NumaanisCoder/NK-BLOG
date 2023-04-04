@@ -38,7 +38,7 @@ module.exports.createUser = async (req, res, next) => {
 module.exports.login = async (req, res, next) => {
   const { token } = await req.cookies;
   if (token) {
-    const { id } = jwt.verify(token, process.env.JWT_SECRET_KEY);
+    const { id } = jwt.verify(token, 'cristianoronaldogreatestofalltime');
     res.redirect(`/user/${id}`);
   } else {
     const { email, password } = req.body;

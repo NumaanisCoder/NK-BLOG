@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken');
 
 module.exports.sendToken = async (user, res) => {
     let id = user.id.toString();
-    let token = jwt.sign({id: id}, process.env.JWT_SECRET_KEY,{
+    let token = jwt.sign({id: id}, 'cristianoronaldogreatestofalltime',{
         expiresIn: '7d'
     })
     res.cookie('token', token, {

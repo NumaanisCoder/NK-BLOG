@@ -26,7 +26,7 @@ console.log(req.body);
 
 module.exports.getAllBlogs = async (req, res) => {
   const { token } = req.cookies;
-  const { id } = jwt.verify(token, process.env.JWT_SECRET_KEY);
+  const { id } = jwt.verify(token,'cristianoronaldogreatestofalltime');
   const blogs = await Blog.find({ user: id });
   res.status(200).json({
     success: true,
