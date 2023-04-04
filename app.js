@@ -14,10 +14,7 @@ const cors = require('cors')
 //body-parser to parse the data from body in POST method.
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(cors({
-    origin: 'http://localhost:3000',
-    credentials: true
-  }));
+app.use(cors());
 
 //middlewares
 app.use(cookie());

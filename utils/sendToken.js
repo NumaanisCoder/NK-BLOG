@@ -6,10 +6,7 @@ module.exports.sendToken = async (user, res) => {
         expiresIn: '7d'
     })
     res.cookie('token', token, {
-        expires: new Date(Date.now() + 5 * 5 * 60 * 60 * 1000),
-        domain: 'localhost:3000', // set to your domain
-  path: '/' 
+        expires: new Date(Date.now() + 5 * 5 * 60 * 60 * 1000)
     })
-    return token;
     
 }
