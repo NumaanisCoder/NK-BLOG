@@ -7,7 +7,8 @@ module.exports.sendToken = async (user, res) => {
     })
     res.cookie('token', token, {
         expires: new Date(Date.now() + 5 * 5 * 60 * 60 * 1000),
-        secure: true
+        secure: true,
+        sameSite: 'none',
     })
     
 }
