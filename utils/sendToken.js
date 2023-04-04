@@ -9,5 +9,6 @@ module.exports.sendToken = async (user, res) => {
         expires: new Date(Date.now() + 5 * 5 * 60 * 60 * 1000),
        
     })
+    return token;
     
 }
