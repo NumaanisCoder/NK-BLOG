@@ -36,6 +36,12 @@ app.get('/get', async (req,res)=>{
     })
 })
 
+app.get('/', async (req,res)=>{
+    res.status(200).json({
+        message: "SERVER IS FINE.."
+    })
+})
+
 app.use((err,req,res,next)=>{
     const {status, message} = err;
     res.status(status).send({
