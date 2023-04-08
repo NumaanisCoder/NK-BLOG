@@ -14,7 +14,10 @@ const cors = require('cors')
 //body-parser to parse the data from body in POST method.
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(cors());
+const allowedOrigins = ['https://nkblogs.ml','https://nkblogs.ml'];
+app.use(cors({
+    origin: allowedOrigins
+}));
 
 //middlewares
 app.use(cookie());

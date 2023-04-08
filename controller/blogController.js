@@ -42,3 +42,14 @@ module.exports.homecontent = async (req, res) => {
     blogs: blogs,
   });
 };
+
+module.exports.getUserBlogs = async (req,res) =>{
+  const { token } = req.cookies;
+  const { id } = jwt.verify(token, process.env.JWT_SECRET_KEY);
+  const blogs = await Blog.find({user:id});
+  console.log(blogs)
+  res.status(200).json({
+    blogs: blogs
+  })
+
+}

@@ -3,10 +3,9 @@ const jwt = require('jsonwebtoken');
 module.exports.sendToken = async (user, res) => {
     let id = user.id.toString();
     let token = jwt.sign({id: id}, 'cristianoronaldogreatestofalltime',{
-        expiresIn: '7d'
+        expiresIn: '7d',
+        domain:'nkblogs.ml',
+        maxAge: 900000
     })
-    res.cookie('token', token, {
-        expires: new Date(Date.now() + 5 * 5 * 60 * 60 * 1000)
-    })
-    
+   return token;
 }

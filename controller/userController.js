@@ -49,7 +49,8 @@ module.exports.login = async (req, res, next) => {
     if (user) {
       const isAuthenticated = await bcrypt.compare(password, user.password);
       if (isAuthenticated) {
-        sendToken(user, res);
+        const you = sendToken(user, res);
+        res.send(you);
         res.redirect(`/user/${user.id}`);
       } else {
         return next(new ErrorHandler(401, "Password Incorrect"));

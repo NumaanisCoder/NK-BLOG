@@ -1,5 +1,4 @@
-// let regex = /^'+'/
+const jwt = require('jsonwebtoken');
 
-// let number = "+919858958938"
-
-// console.log(regex.test(number))
+const idea = jwt.verify('eyJhbGciOiJIUzI1NiJ9.aGFrdW5hbWF0YXRhMDI3QGdtYWlsLmNvbQ.O5fsgrFdW1sU8Ph05JCN5QMcJK9r0x7hqaw5oLlZNuE', 'thisismeorwho');
+console.log(idea)
