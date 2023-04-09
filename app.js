@@ -17,8 +17,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
   
 app.use(cors({
-    origin: 'https://nkblogs.ml',
-    credentials: true
+    origin: 'https://nkblogs.ml'
 }));
    
 
