@@ -16,11 +16,11 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
   
-app.use(cors({
-    origin: ['https://nkblogs.ml', 'http://localhost:3001'],
-    credentials: true
-}));
-
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', 'https://nkblogs.ml');
+    res.header('Access-Control-Allow-Credentials', 'true');
+    next();
+  });
 
 //middlewares
 app.use(cookie());
