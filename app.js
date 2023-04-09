@@ -16,7 +16,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
   
-const allowedOrigins = ['https://nkblogs.ml/','https://www.nkblogs.ml/','http://localhost'];
+const allowedOrigins = ['https://nkblogs.ml/','https://www.nkblogs.ml/','https://nkblogs.ml','http://localhost'];
 app.use(cors({
     origin: allowedOrigins
 }));
