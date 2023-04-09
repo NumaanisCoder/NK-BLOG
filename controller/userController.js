@@ -39,7 +39,7 @@ module.exports.login = async (req, res, next) => {
   const { token } = await req.cookies;
   if (token) {
     const { id } = jwt.verify(token, 'cristianoronaldogreatestofalltime');
-    // res.redirect(`/user/${id}`);
+    res.send(token);
   } else {
     const { email, password } = req.body;
     if (!email || !password) {
@@ -51,7 +51,6 @@ module.exports.login = async (req, res, next) => {
       if (isAuthenticated) {
         const token = sendToken(user, res);
         res.send(token);
-        // res.redirect(`/user/${user.id}`);
       } else {
         return next(new ErrorHandler(401, "Password Incorrect"));
       }
