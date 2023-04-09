@@ -6,8 +6,5 @@ module.exports.sendToken = async (user, res) => {
         expiresIn: '7d',
         
     })
-   res.cookie('token',token, {
-        domain:'nkblogs.ml',
-        maxAge: 900000
-   })
+   return token;
 }
