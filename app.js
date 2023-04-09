@@ -11,21 +11,20 @@ const blog = require('./module/blog');
 const cors = require('cors')
 
 
-app.use(cors({
-    origin: 'http://localhost:3001'
-}));
-   
 //body-parser to parse the data from body in POST method.
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
   
+const allowedOrigins = ['https://nkblogs.ml/','https://www.nkblogs.ml/','http://localhost'];
+app.use(cors({
+    origin: allowedOrigins
+}));
 
 //middlewares
 app.use(cookie());
 app.use(userRouter);
 app.use(blogRouter);
-
 
 //DB Connection
 DBConnection();
