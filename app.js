@@ -14,10 +14,17 @@ const cors = require('cors')
 //body-parser to parse the data from body in POST method.
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-const allowedOrigins = ['https://nkblogs.ml/','https://www.nkblogs.ml/','http://localhost'];
+
+  
+const allowedOrigins = ['https://nkblogs.ml','https://www.nkblogs.ml','http://localhost'];
 app.use(cors({
     origin: allowedOrigins
 }));
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "https://nkblogs.ml");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+  });
 
 //middlewares
 app.use(cookie());
