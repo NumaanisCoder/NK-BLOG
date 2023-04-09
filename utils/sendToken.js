@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
 
-module.exports.sendToken = async (user, res) => {
+module.exports.sendToken = async (user) => {
     let id = user.id.toString();
     let token = jwt.sign({id: id}, 'cristianoronaldogreatestofalltime',{
         expiresIn: '7d',

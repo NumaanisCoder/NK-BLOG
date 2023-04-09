@@ -23,23 +23,24 @@ module.exports.createUser = async (req, res, next) => {
     { password: await bcrypt.hash(password, 12) },
     { new: true }
   );
-  const token = sendToken(user, res);
-  res.status(201).json({
-    success: true,
-    status: 201,
-    token:token,
-    message: "user created successfully"
-  });
+  let token1;
+        await sendToken(user).then((token)=>{
+        token1 = token;
+        })
+        res.json({
+          success: true,
+          token: token1
+        })
 }catch(e){
   console.log(e);
 }
 };
 
 module.exports.login = async (req, res, next) => {
-  const { token } = await req.cookies;
+  const  token  = req.cookies['token'];
   if (token) {
     const { id } = jwt.verify(token, 'cristianoronaldogreatestofalltime');
-    res.send(token);
+    res.redirect(`/user/${id}`);
   } else {
     const { email, password } = req.body;
     if (!email || !password) {
@@ -49,8 +50,15 @@ module.exports.login = async (req, res, next) => {
     if (user) {
       const isAuthenticated = await bcrypt.compare(password, user.password);
       if (isAuthenticated) {
-        const token = sendToken(user, res);
-        res.send(token);
+        let token1;
+        await sendToken(user).then((token)=>{
+        token1 = token;
+        })
+        res.json({
+          success: true,
+          token: token1
+        })
+        
       } else {
         return next(new ErrorHandler(401, "Password Incorrect"));
       }
