@@ -21,8 +21,12 @@ app.use(cors());
 
 //middlewares
 app.use(cookie());
-app.use(userRouter);
+app.use(userRouter);app.use((req, res, next) => {
+    res.setHeader('Access-Control-Allow-Origin', 'https://nkblogs.ml');
+    next();
+  });
 app.use(blogRouter);
+
 
 //DB Connection
 DBConnection();
