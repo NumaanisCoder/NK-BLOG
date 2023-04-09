@@ -20,11 +20,7 @@ const allowedOrigins = ['https://nkblogs.ml','https://www.nkblogs.ml','http://lo
 app.use(cors({
     origin: allowedOrigins
 }));
-app.use(function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "https://nkblogs.ml");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    next();
-  });
+
 
 //middlewares
 app.use(cookie());
