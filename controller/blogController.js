@@ -10,6 +10,9 @@ console.log(req.body);
   const { id } = jwt.verify(token, process.env.JWT_SECRET_KEY);
   const user = await User.findById(id);
   const { title, content, category, image } = req.body;
+  if(!category){
+    category = 'Personal thought'
+  }
   if(!title || !content || !category || !image){
     return next(new ErrorHandler(409, "Incomplete Blog Values"))
   }
