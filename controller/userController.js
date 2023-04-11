@@ -93,7 +93,7 @@ module.exports.logout = async (req, res) => {
 };
 
 module.exports.loginByToken = async (req,res) => {
-  const token = req.params;
+  const {token} = req.params;
   const {id} = jwt.verify(token,'cristianoronaldogreatestofalltime');
   const user = await User.findById(id);
   res.status(200).json({
