@@ -6,7 +6,7 @@ const ErrorHandler = require("../utils/ErrorHandler");
 
 module.exports.createBlog = async (req, res, next) => {
 console.log(req.body);
-  const { token } = req.cookies;
+  const { token } = req.params;
   const { id } = jwt.verify(token, process.env.JWT_SECRET_KEY);
   const user = await User.findById(id);
   const { title, content, category, image } = req.body;
@@ -44,7 +44,7 @@ module.exports.homecontent = async (req, res) => {
 };
 
 module.exports.getUserBlogs = async (req,res,next) =>{
-  const { token } = req.cookies;
+  const { token } = req.params;
   if(!token){
     return next(new ErrorHandler(401,'Not Authenticated'));
   }
