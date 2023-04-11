@@ -1,5 +1,5 @@
 const express = require('express');
-const { createBlog, getAllBlogs, getUserBlogs } = require('../controller/blogController');
+const { createBlog, getAllBlogs, getUserBlogs, deleteUserBlog, updateUserBlog } = require('../controller/blogController');
 const { isAuthenticated } = require('../middleware/auth');
 const multer = require('multer');
 const upload = multer({ storage: multer.memoryStorage() });
@@ -9,5 +9,7 @@ const router = express.Router();
 router.route('/createblog').post(isAuthenticated,upload.single("file"),createBlog);
 router.route('/getAllBlogs').get(isAuthenticated,getAllBlogs);
 router.route('/userblogs').get(getUserBlogs);
+router.route('/userblogs/delete/:id').delete(deleteUserBlog);
+router.route('/userblogs/update/:id').put(updateUserBlog);
 
 module.exports = router;

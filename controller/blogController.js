@@ -54,3 +54,20 @@ module.exports.getUserBlogs = async (req,res,next) =>{
     blogs: blogs
   })
 }
+
+module.exports.deleteUserBlog = async (req,res,next) => {
+  const {id} = req.params;
+  await Blog.findByIdAndDelete(id);
+  res.json({
+    success: true
+  })
+}
+module.exports.updateUserBlog = async (req,res,next) => {
+  const {id} = req.params;
+  const {title,image,content, category} = req.body;
+
+  await Blog.findByIdAndUpdate(id,{title,image,content,category});
+  res.json({
+    success: true
+  })
+}
