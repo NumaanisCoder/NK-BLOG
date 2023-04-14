@@ -2,14 +2,18 @@ const jwt = require("jsonwebtoken");
 const Blog = require("../module/blog");
 const User = require("../module/user");
 const ErrorHandler = require("../utils/ErrorHandler");
+const ImageKit = require("imagekit");
+const { uploadImage } = require("../utils/imagekit");
+
 
 
 module.exports.createBlog = async (req, res, next) => {
-console.log(req.body);
+const imagefile = req.file;
   const { token } = req.params;
   const { id } = jwt.verify(token, process.env.JWT_SECRET_KEY);
   const user = await User.findById(id);
-  const { title, content, category, image } = req.body;
+  const { title, content, category} = req.body;
+  image = await uploadImage(imagefile.buffer, imagefile.originalname);
   if(!category){
     category = 'Personal thought'
   }
@@ -74,3 +78,4 @@ module.exports.updateUserBlog = async (req,res,next) => {
     success: true
   })
 }
+
