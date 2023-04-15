@@ -16,7 +16,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 const urlSupported = ['https://nkblogs.ml', 'http://localhost:3001'];
-  
+   
 app.use(cors({
     origin: urlSupported,
     credentials: true
