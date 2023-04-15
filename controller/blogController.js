@@ -79,3 +79,12 @@ module.exports.updateUserBlog = async (req,res,next) => {
   })
 }
 
+module.exports.getSingleBlog = async (req,res) =>{
+  const {id} = req.params;
+  const blog = await Blog.findById(id);
+  res.status(200).json({
+    success: true,
+    blog: blog
+  })
+}
+
