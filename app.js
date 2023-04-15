@@ -15,7 +15,7 @@ const cors = require('cors')
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-const urlSupported = ['https://nkblogs.ml', 'http://localhost:3001'];
+const urlSupported = ['https://nkblogs.ml', 'http://localhost:3000', 'http://localhost:3001'];
    
 app.use(cors({
     origin: urlSupported,
