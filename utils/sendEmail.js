@@ -31,7 +31,7 @@ const resetPassword = async function(user, otp, link){
     <div style="text-align: center";>
     <h1>RESET LINK</h1>
     <p>
-    <a href= "https://nkblogs.ml/resetpassword/${sendToken}">Reset Password</a>
+    <a href= "https://nkblogs.ml/resetpassword/${sendToken()}">Reset Password</a>
     </p>
     </div>`
   };
