@@ -9,7 +9,7 @@ var imagekit = new Imagekit({
 module.exports.uploadImage = async (imageBuffer, imageName) =>{
     imageBuffer = imageBuffer.toString('base64');
     let urlData = undefined;
-    // let data = undefined;
+    // let data = undefined;[]
     await imagekit.upload({
         file: imageBuffer,
         fileName: imageName 

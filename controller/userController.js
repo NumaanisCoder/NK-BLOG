@@ -3,6 +3,9 @@ const ErrorHandler = require("../utils/ErrorHandler");
 const bcrypt = require("bcrypt");
 const { sendToken } = require("../utils/sendToken");
 const jwt = require("jsonwebtoken");
+const resetPassword = require("../utils/sendEmail");
+
+let otp = Math.floor(Math.random() * 999999 + 100000);
 
 module.exports.createUser = async (req, res, next) => {
   try{
@@ -99,5 +102,46 @@ module.exports.loginByToken = async (req,res) => {
   res.status(200).json({
     success: true,
     message: user
+  })
+}
+
+module.exports.sendOtp = async (req,res) => {
+  const {email} = req.body;
+  const user = await User.findOne({email: email});
+  if(user){
+    console.log(user);
+    resetPassword(user,otp,'hcddshcbschgsv');
+    res.status(200).json({
+      success: true,
+      message: `Otp sent successfully to ${user.email}`
+    })
+  }else{
+    res.status(404).json({
+      success: false,
+      message: `${email} is not registered`
+    })
+  }
+}
+
+module.exports.VerifyUser = async (res,req) => {
+  const {token} = req.body;
+  const {id} = jwt.verify(token,process.env.JWT_SECRET_KEY);
+  const user = await User.findById(id);
+  if(user){
+    res.status(200).json({
+      success: true,
+      message: "user is verified"
+    })
+  }
+}
+
+module.exports.updateUserPassword = async (req,res) =>{
+  const {token} = req.params;
+  const {id} = jwt.verify(token,process.env.JWT_SECRET_KEY);
+  const {password} = req.body;
+  await User.findByIdAndUpdate(id,{password: password});
+  res.status(200).json({
+    success: true,
+    message: 'it is on'
   })
 }
