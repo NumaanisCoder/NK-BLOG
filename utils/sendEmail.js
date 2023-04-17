@@ -11,7 +11,7 @@ const { sendToken } = require("./sendToken");
 //     return details;
 // }
 
-const resetPassword = async function(user, otp, link){
+const resetPassword = async function(user){
   const mailTransporter = nodemailer.createTransport(
     {
       service: "gmail",
@@ -31,7 +31,7 @@ const resetPassword = async function(user, otp, link){
     <div style="text-align: center";>
     <h1>RESET LINK</h1>
     <p>
-    <a href= "https://nkblogs.ml/resetpassword/${sendToken()}">Reset Password</a>
+    <a href= "https://nkblogs.ml/resetpassword/${sendToken(user)}">Reset Password</a>
     </p>
     </div>`
   };

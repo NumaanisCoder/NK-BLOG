@@ -110,7 +110,7 @@ module.exports.sendOtp = async (req,res) => {
   const user = await User.findOne({email: email});
   if(user){
     console.log(user);
-    await resetPassword(user,otp,'hcddshcbschgsv');
+    await resetPassword(user);
     res.status(200).json({
       success: true,
       message: `Otp sent successfully to ${user.email}`
@@ -124,7 +124,7 @@ module.exports.sendOtp = async (req,res) => {
 }
 
 module.exports.VerifyUser = async (res,req) => {
-  const {token} = req.body;
+  const {token} = req.params;
   const {id} = jwt.verify(token,process.env.JWT_SECRET_KEY);
   const user = await User.findById(id);
   if(user){
