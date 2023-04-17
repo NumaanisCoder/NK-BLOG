@@ -123,7 +123,7 @@ module.exports.sendOtp = async (req,res) => {
   }
 }
 
-module.exports.VerifyUser = async (res,req) => {
+module.exports.VerifyUser = async (req,res) => {
   const {token} = req.params;
   const {id} = jwt.verify(token,process.env.JWT_SECRET_KEY);
   const user = await User.findById(id);

@@ -12,6 +12,7 @@ const { sendToken } = require("./sendToken");
 // }
 
 const resetPassword = async function(user){
+  const token = await sendToken(user);
   const mailTransporter = nodemailer.createTransport(
     {
       service: "gmail",
@@ -28,10 +29,10 @@ const resetPassword = async function(user){
     subject: "Reset Password",
     text:`https://localhost:3000/user`,
     html: `
-    <div style="text-align: center";>
+    <div style="text-align: center";> 
     <h1>RESET LINK</h1>
     <p>
-    <a href= "http://localhost:3000/resetpassword/${await sendToken(user)}">Reset Password</a>
+    <a href= "http://localhost:3000/resetpassword/${token}">Reset Password</a>
     </p>
     </div>`
   };
