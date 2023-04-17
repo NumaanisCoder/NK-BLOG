@@ -110,7 +110,7 @@ module.exports.sendOtp = async (req,res) => {
   const user = await User.findOne({email: email});
   if(user){
     console.log(user);
-    resetPassword(user,otp,'hcddshcbschgsv');
+    await resetPassword(user,otp,'hcddshcbschgsv');
     res.status(200).json({
       success: true,
       message: `Otp sent successfully to ${user.email}`
