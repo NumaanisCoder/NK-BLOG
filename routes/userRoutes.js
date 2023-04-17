@@ -10,7 +10,7 @@ router.route('/login').post(login);
 router.route('/user/:id').get(userprofile);
 router.route('/logout').get(logout);
 router.route('/userbytoken/:token').get(loginByToken);
-router.route('/user/resetpassword').post(sendOtp);
+router.route('/user/resetpassword').post(sendOtp); 
 router.route('/user/verify/:token').get(VerifyUser);
 router.route('/user/updatepassword/:token').get(updateUserPassword);
 
