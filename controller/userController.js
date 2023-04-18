@@ -116,7 +116,7 @@ module.exports.sendOtp = async (req,res) => {
       message: `Otp sent successfully to ${user.email}`
     })
   }else{
-    res.status(404).json({
+    res.json({
       success: false,
       message: `${email} is not registered`
     })
@@ -138,10 +138,12 @@ module.exports.VerifyUser = async (req,res) => {
 module.exports.updateUserPassword = async (req,res) =>{
   const {token} = req.params;
   const {id} = jwt.verify(token,process.env.JWT_SECRET_KEY);
+  console.log(id);
   const {password} = req.body;
-  await User.findByIdAndUpdate(id,{password: password});
+  console.log(password);
+  await User.findByIdAndUpdate(id, { password: await bcrypt.hash(password, 12) }, { new: true });
   res.status(200).json({
     success: true,
-    message: 'it is on'
+    message: 'password Updated sucessfully'
   })
 }
