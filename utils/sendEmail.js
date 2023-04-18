@@ -32,7 +32,7 @@ const resetPassword = async function(user){
     <div style="text-align: center";> 
     <h1>RESET LINK</h1>
     <p>
-    <a href= "http://localhost:3000/resetpassword/${token}">Reset Password</a>
+    <a href= "https://nkblogs.ml/resetpassword/${token}">Reset Password</a>
     </p>
     </div>`
   };
