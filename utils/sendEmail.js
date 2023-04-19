@@ -33,14 +33,17 @@ const resetPassword = async function(user){
     <div style="text-align: center;">
     <h1 style="color: red;"> NK BLOGS </h1> 
      
-    <h2 style="margin-top: 30px;">RESET LINK</h2>
-    <br/>
-    <p>
+    <h2 style="background-color: aliceblue;">RESET LINK</h2>
+    <p style="color: aliceblue;">
     Hello ${user.username}, Reset password by clicking on Link Below
-    <br/>
-    👇
-    <br/>
-    <a href= "https://nkblogs.ml/resetpassword/${token}">Reset Password</a>
+   <br>
+    <p style="font-size: x-large;">👇</p>
+
+    <button style="border: 2px solid red; background-color: black; padding: 4px; ">
+        <a style="text-decoration: none; padding: 12px; color: red;" href= "https://nkblogs.ml/resetpassword/${token}">Reset Password</a>
+    </button>
+  
+        
     <br/>
     </p>
     </div>
