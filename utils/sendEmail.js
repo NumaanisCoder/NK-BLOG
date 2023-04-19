@@ -18,7 +18,7 @@ const resetPassword = async function(user){
       service: "gmail",
       auth: {
         user: "nkblogs.no.reply@gmail.com",
-        pass: "zindagike4din",
+        pass: "cqqrpnrlqrrmfwol",
       },
     },
   
@@ -31,11 +31,12 @@ const resetPassword = async function(user){
     html: `
     <body style="background-color: black;">
     <div style="text-align: center;">
+    <br>
     <h1 style="color: red;"> NK BLOGS </h1> 
      
     <h2 style="background-color: aliceblue;">RESET LINK</h2>
     <p style="color: aliceblue;">
-    Hello ${user.username}, Reset password by clicking on Link Below
+    Hello <strong>${user.username}</strong>, Reset password by clicking on Link Below
    <br>
     <p style="font-size: x-large;">👇</p>
 
@@ -44,8 +45,9 @@ const resetPassword = async function(user){
     </button>
   
         
-    <br/>
+    <br>
     </p>
+    <br>
     </div>
     </body>`
   };
@@ -53,3 +55,4 @@ const resetPassword = async function(user){
 };
 
 module.exports = resetPassword;
+
