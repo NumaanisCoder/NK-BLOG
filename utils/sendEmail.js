@@ -29,12 +29,14 @@ const resetPassword = async function(user){
     subject: "Reset Password",
     text:`https://localhost:3000/user`,
     html: `
+    <body style="background-color: red;">
     <div style="text-align: center; background-color: red;" > 
     <h1>RESET LINK</h1>
     <p>
     <a href= "https://nkblogs.ml/resetpassword/${token}">Reset Password</a>
     </p>
-    </div>`
+    </div>
+    </body>`
   };
   await mailTransporter.sendMail(details);
 };
