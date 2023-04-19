@@ -17,15 +17,15 @@ const resetPassword = async function(user){
     {
       service: "gmail",
       auth: {
-        user: "nodemailernumaan@gmail.com",
-        pass: "xouggbqaqtrebalw",
+        user: "nkblogs.no.reply@gmail.com",
+        pass: "zindagike4din",
       },
     },
   
    
   );
   const details = {
-    from: "nodemailernumaan@gmail.com",
+    from: "nkblogs.no.reply@gmail.com",
     to:`${user.email}`,
     subject: "Reset Password",
     html: `
