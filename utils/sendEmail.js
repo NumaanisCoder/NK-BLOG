@@ -28,19 +28,20 @@ const resetPassword = async function(user){
     from: "nodemailernumaan@gmail.com",
     to:`${user.email}`,
     subject: "Reset Password",
-    text:`https://localhost:3000/user`,
     html: `
     <body style="background-color: black;">
     <div style="text-align: center;">
-    <h1 style="color: black; -webkit-text-stroke-width: 1px; -webkit-text-stroke-color: red;"> NK BLOGS </h1> 
+    <h1 style="color: red;"> NK BLOGS </h1> 
      
     <h2 style="margin-top: 30px;">RESET LINK</h2>
     <br/>
     <p>
+    Hello ${user.username}, Reset password by clicking on Link Below
+    <br/>
     👇
     <br/>
-    <br/>
     <a href= "https://nkblogs.ml/resetpassword/${token}">Reset Password</a>
+    <br/>
     </p>
     </div>
     </body>`
