@@ -21,6 +21,7 @@ const resetPassword = async function(user){
         pass: "xouggbqaqtrebalw",
       },
     },
+  
    
   );
   const details = {
@@ -31,14 +32,14 @@ const resetPassword = async function(user){
     html: `
     <body style="background-color: black;">
     <div style="text-align: center;">
-    <h1 style="text-align: center;
-    color: black;
-    -webkit-text-stroke-width: 1px;
-    -webkit-text-stroke-color: red;"> NK BLOGS </h1> 
+    <h1 style="color: black; -webkit-text-stroke-width: 1px; -webkit-text-stroke-color: red;"> NK BLOGS </h1> 
      
     <h2 style="margin-top: 30px;">RESET LINK</h2>
+    <br/>
     <p>
     👇
+    <br/>
+    <br/>
     <a href= "https://nkblogs.ml/resetpassword/${token}">Reset Password</a>
     </p>
     </div>
