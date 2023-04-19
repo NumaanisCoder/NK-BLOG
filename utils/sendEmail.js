@@ -29,7 +29,7 @@ const resetPassword = async function(user){
     subject: "Reset Password",
     text:`https://localhost:3000/user`,
     html: `
-    <body style="background-color: red;">
+    <body style="background-color: black;">
     <div style="text-align: center;">
     <h1 style="text-align: center;
     color: black;
