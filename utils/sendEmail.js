@@ -30,9 +30,15 @@ const resetPassword = async function(user){
     text:`https://localhost:3000/user`,
     html: `
     <body style="background-color: red;">
-    <div style="text-align: center; background-color: red;" > 
-    <h1>RESET LINK</h1>
+    <div style="text-align: center;">
+    <h1 style="text-align: center;
+    color: black;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: red;"> NK BLOGS </h1> 
+     
+    <h2 style="margin-top: 30px;">RESET LINK</h2>
     <p>
+    👇
     <a href= "https://nkblogs.ml/resetpassword/${token}">Reset Password</a>
     </p>
     </div>
