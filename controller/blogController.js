@@ -71,8 +71,17 @@ module.exports.deleteUserBlog = async (req,res,next) => {
 }
 module.exports.updateUserBlog = async (req,res,next) => {
   const {id} = req.params;
-  const {title,image,content, category} = req.body;
-
+  const imagefile = req.file;
+  image = await uploadImage(imagefile.buffer, imagefile.originalname);
+  const {title,content, category} = req.body;
+  const data = [
+    {
+      title: title,
+      content: content,
+      image: image,
+      category: category
+    }
+  ]
   await Blog.findByIdAndUpdate(id,{title,image,content,category});
   res.json({
     success: true

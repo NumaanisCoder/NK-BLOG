@@ -11,7 +11,7 @@ router.route('/createblog/:token').post(upload.single('image'),createBlog);
 router.route('/getAllBlogs').get(isAuthenticated,getAllBlogs);
 router.route('/userblogs/:token').get(getUserBlogs);
 router.route('/userblogs/delete/:id').delete(deleteUserBlog);
-router.route('/userblogs/update/:id').put(updateUserBlog);
+router.route('/userblogs/update/:id').put(upload.single('image'),updateUserBlog);
 router.route('/blog/:id').get(getSingleBlog); 
 
 module.exports = router;
