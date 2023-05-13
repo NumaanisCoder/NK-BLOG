@@ -42,9 +42,10 @@ module.exports.getAllBlogs = async (req, res) => {
 };
 
 module.exports.homecontent = async (req, res) => {
-  const { query, category } = req.body;
+  const {query} = req.body;
+  console.log(req.body);
   let regex = new RegExp(query, "i");
-  const blogs = await Blog.find({ title: regex });
+  const blogs = await Blog.find({ title: regex }).sort({id: -1}).exec();
   res.status(200).json({
     blogs: blogs,
   });

@@ -4,8 +4,9 @@ const bcrypt = require("bcrypt");
 const { sendToken } = require("../utils/sendToken");
 const jwt = require("jsonwebtoken");
 const resetPassword = require("../utils/sendEmail");
+const verifyEmail = require("../utils/verifyEmail");
 
-let otp = Math.floor(Math.random() * 999999 + 100000);
+let SendingOtp = Math.floor(Math.random() * 999999 + 100000);
 
 module.exports.createUser = async (req, res, next) => {
   try{
@@ -146,4 +147,28 @@ module.exports.updateUserPassword = async (req,res) =>{
     success: true,
     message: 'password Updated sucessfully'
   })
+}
+
+module.exports.verifyEmail = async (req,res) => {
+  const {email} = req.body;
+  verifyEmail(email, SendingOtp);
+  res.status(200).json({
+    success: true,
+    message: "Email Send SuccessFully"
+  })
+}
+
+module.exports.verifyOTP = async (req,res) => {
+  const {otp} = req.body;
+  if(otp == SendingOtp){
+    res.status(200).json({
+      success: true,
+      message: "Otp Matched"
+    })
+  }else if(otp !== SendingOtp){
+    res.status(401).json({
+      success: false,
+      message: "Otp UnMatched"
+    })
+  }
 }

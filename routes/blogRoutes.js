@@ -1,5 +1,5 @@
 const express = require('express');
-const { createBlog, getAllBlogs, getUserBlogs, deleteUserBlog, updateUserBlog, getSingleBlog } = require('../controller/blogController');
+const { createBlog, getAllBlogs, getUserBlogs, deleteUserBlog, updateUserBlog, getSingleBlog, homecontent } = require('../controller/blogController');
 const { isAuthenticated } = require('../middleware/auth');
 const multer = require('multer');
 const upload = multer({storage: multer.memoryStorage()});
@@ -13,5 +13,6 @@ router.route('/userblogs/:token').get(getUserBlogs);
 router.route('/userblogs/delete/:id').delete(deleteUserBlog);
 router.route('/userblogs/update/:id').put(upload.single('image'),updateUserBlog);
 router.route('/blog/:id').get(getSingleBlog); 
+router.route('/blog/query').post(homecontent);
 
 module.exports = router;
