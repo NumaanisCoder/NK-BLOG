@@ -45,7 +45,7 @@ module.exports.homecontent = async (req, res) => {
   const {query} = req.body;
   console.log(req.body);
   let regex = new RegExp(query, "i");
-  const blogs = await Blog.find({ title: regex }).populate("user").sort({id: -1}).exec();
+  const blogs = await Blog.find({ title: regex }).populate("user").sort({_id: -1}).exec();
   res.status(200).json({
     blogs: blogs,
   });
