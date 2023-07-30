@@ -57,7 +57,7 @@ module.exports.getUserBlogs = async (req,res,next) =>{
     return next(new ErrorHandler(401,'Not Authenticated'));
   }
   const { id } = jwt.verify(token, process.env.JWT_SECRET_KEY);
-  const blogs = await Blog.find({user:id});
+  const blogs = await Blog.find({user:id}).sort({_id:-1});
   res.status(200).json({
     blogs: blogs
   })
