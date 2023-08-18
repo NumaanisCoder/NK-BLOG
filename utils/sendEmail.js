@@ -41,7 +41,7 @@ const resetPassword = async function(user){
     <p style="font-size: x-large;">👇</p>
 
     <button style="border: 2px solid red; background-color: black; padding: 4px; ">
-        <a style="text-decoration: none; padding: 12px; color: red;" href= "https://nkblogs.ml/resetpassword/${token}">Reset Password</a>
+        <a style="text-decoration: none; padding: 12px; color: red;" href= "https://nkblogs.netlify/resetpassword/${token}">Reset Password</a>
     </button>
   
         
