@@ -13,6 +13,9 @@ const userSchema =new Schema({
         type: String,
         required:[true,'user email is required']
     },
+    otp: {
+        type: Number
+    },
     password:{
         type:String,
         required: [true, 'password required']
@@ -22,6 +25,7 @@ const userSchema =new Schema({
             type: mongoose.Types.ObjectId
         }
     ]
+    
 })
 
 module.exports = mongoose.model('user',userSchema);

@@ -2,7 +2,6 @@ const jwt = require("jsonwebtoken");
 const Blog = require("../module/blog");
 const User = require("../module/user");
 const ErrorHandler = require("../utils/ErrorHandler");
-const ImageKit = require("imagekit");
 const { uploadImage } = require("../utils/imagekit");
 
 

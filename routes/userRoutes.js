@@ -1,6 +1,5 @@
 const express = require('express');
-const { homecontent } = require('../controller/blogController');
-const { createUser, login, userprofile, logout, loginByToken, sendOtp, VerifyUser, updateUserPassword } = require('../controller/userController');
+const { createUser, login, userprofile, logout, loginByToken, sendOtp, VerifyUser, updateUserPassword, verify_otp, send_otp } = require('../controller/userController');
 
 const router = express.Router();
 
@@ -14,8 +13,8 @@ router.route('/user/resetpassword').post(sendOtp);
 router.route('/user/verify/:token').get(VerifyUser);
 router.route('/user/updatepassword/:token').post(updateUserPassword);
 
-
-
+router.route('/sendotp').post(send_otp);
+router.route('/verifyotp').post(verify_otp);
 
 
 
