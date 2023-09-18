@@ -25,7 +25,7 @@ module.exports.send_otpFunc = async (email, otp) => {
        
       <h2 style="background-color: aliceblue;">OTP Verification</h2>
       <p style="color: aliceblue;">
-      Hello , Enter ${otp} to verify
+      Hello , Enter <strong>${otp}</strong> to verify
      <br>      
       <br>
       </p>
