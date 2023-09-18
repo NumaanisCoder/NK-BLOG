@@ -5,20 +5,8 @@ const { sendToken } = require("../utils/sendToken");
 const jwt = require("jsonwebtoken");
 const resetPassword = require("../utils/sendEmail");
 
-const verifyEmail = require("../utils/verifyEmail");
 const { send_otpFunc } = require("../utils/OTPVerification");
 
-
-module.exports.send_otp = async (req,res) => {
-  const {email} = req.body;
-  const otp = Math.floor(Math.random() * 999999 + 100000);
-  send_otpFunc(email,otp);
-  res.json({
-    success: true,
-    message: "Otp sent successfully"
-  })
-
-}
 
 module.exports.verify_otp = async (req,res) => {
   const {email,otp} = req.body;
@@ -52,7 +40,8 @@ module.exports.createUser = async (req, res, next) => {
     if (test_user) {
       return next(new ErrorHandler(409, "email had already registered"));
     }
-    
+    const otp = Math.floor(Math.random() * 999999 + 100000);
+    send_otpFunc(email,otp);
     const user = new User({ username, email, password, otp});
     user.save();
     await User.findOneAndUpdate(
