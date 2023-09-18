@@ -10,16 +10,19 @@ const { send_otpFunc } = require("../utils/OTPVerification");
 
 module.exports.verify_otp = async (req,res) => 
 {
-  const token = req.cookies["Emailtoken"];
-  console.log(token);
-  const {email} = jwt.verify(token, 'cristianoronaldogreatestofalltime');
+  const {Emailtoken} = req.params;
+  const {otpValue} = req.body;
+  const {email} = jwt.verify(Emailtoken, 'cristianoronaldogreatestofalltime');
   const user = await User.findOne({email: email});
-  console.log(otp);
+  console.log(otpValue);
   console.log(user.otp);
-  if(user.otp === otp){
+  console.log(user.otp == otpValue);
+  let token = await sendToken(user);
+  if(user.otp == otpValue){
     res.json({
       success: true,
-      message: "user verified"
+      message: "user verified",
+      token: token
     })
   }else{
     res.json({
@@ -52,7 +55,7 @@ module.exports.createUser = async (req, res, next) => {
       { password: await bcrypt.hash(password, 12) },
       { new: true }
     );
-    let token1 = sendEcryptedEmailToken(email);
+    let token1 = await sendEcryptedEmailToken(email);
     console.log("Token send is ",token1);
     res.json({
       success: true,

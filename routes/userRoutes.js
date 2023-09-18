@@ -12,6 +12,6 @@ router.route('/userbytoken/:token').get(loginByToken);
 router.route('/user/resetpassword').post(sendOtp); 
 router.route('/user/verify/:token').get(VerifyUser);
 router.route('/user/updatepassword/:token').post(updateUserPassword);
-router.route('/verifyotp/:token').post(verify_otp);
+router.route('/verifyotp/:Emailtoken').post(verify_otp);
 
 module.exports = router;
