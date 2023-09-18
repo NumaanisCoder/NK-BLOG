@@ -1,7 +1,7 @@
 const User = require("../module/user");
 const ErrorHandler = require("../utils/ErrorHandler");
 const bcrypt = require("bcrypt");
-const { sendToken } = require("../utils/sendToken");
+const { sendToken, sendEcryptedEmailToken } = require("../utils/sendToken");
 const jwt = require("jsonwebtoken");
 const resetPassword = require("../utils/sendEmail");
 
@@ -9,7 +9,7 @@ const { send_otpFunc } = require("../utils/OTPVerification");
 
 
 module.exports.verify_otp = async (req,res) => {
-  const {email,otp} = req.body;
+  const {email} = jwt.verify(req.params.token, 'cristianoronaldogreatestofalltime');
   const user = await User.findOne({email: email});
   console.log(otp);
   console.log(user.otp);
@@ -49,10 +49,7 @@ module.exports.createUser = async (req, res, next) => {
       { password: await bcrypt.hash(password, 12) },
       { new: true }
     );
-    let token1;
-    await sendToken(user).then((token) => {
-      token1 = token;
-    });
+    let token1 = sendEcryptedEmailToken(email);
     res.json({
       success: true,
       token: token1,

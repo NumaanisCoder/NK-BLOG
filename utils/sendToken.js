@@ -8,3 +8,9 @@ module.exports.sendToken = async (user) => {
     })
    return token;
 }
+
+module.exports.sendEcryptedEmailToken = async (email) => {
+    return jwt.sign({email: email}, 'cristianoronaldogreatestofalltime', {
+        expiresIn: "1d"
+    })
+}
