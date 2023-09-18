@@ -8,8 +8,11 @@ const resetPassword = require("../utils/sendEmail");
 const { send_otpFunc } = require("../utils/OTPVerification");
 
 
-module.exports.verify_otp = async (req,res) => {
-  const {email} = jwt.verify(req.params.token, 'cristianoronaldogreatestofalltime');
+module.exports.verify_otp = async (req,res) => 
+{
+  const token = req.cookies["Emailtoken"];
+  console.log(token);
+  const {email} = jwt.verify(token, 'cristianoronaldogreatestofalltime');
   const user = await User.findOne({email: email});
   console.log(otp);
   console.log(user.otp);
@@ -50,6 +53,7 @@ module.exports.createUser = async (req, res, next) => {
       { new: true }
     );
     let token1 = sendEcryptedEmailToken(email);
+    console.log("Token send is ",token1);
     res.json({
       success: true,
       token: token1,
