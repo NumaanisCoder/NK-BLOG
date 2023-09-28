@@ -25,6 +25,10 @@ const blogSchema = new Schema({
     createdAt:{
         type: Number,
         default: Date.now()
+    },
+    views: {
+        type: Number,
+        default: 0
     }
 })
 
