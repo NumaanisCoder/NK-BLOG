@@ -92,6 +92,7 @@ module.exports.getSingleBlog = async (req,res) =>{
   const {id} = req.params;
   const blog = await Blog.findById(id).populate('user').sort({_id: -1}).exec();
   blog.views += 1;
+  await blog.save();
   console.log(blog);
   res.status(200).json({
     success: true,
