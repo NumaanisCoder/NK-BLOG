@@ -71,27 +71,19 @@ module.exports.deleteUserBlog = async (req,res,next) => {
 }
 module.exports.updateUserBlog = async (req,res,next) => {
   const {id} = req.params;
+  console.log(id);
   const imagefile = req.file;
   image = await uploadImage(imagefile.buffer, imagefile.originalname);
   const {title,content, category} = req.body;
-  const data = [
-    {
-      title: title,
-      content: content,
-      image: image,
-      category: category
-    }
-  ]
   await Blog.findByIdAndUpdate(id,{title,image,content,category});
   res.json({
     success: true
   })
 }
 
-module.exports.getSingleBlog = async (req,res) =>{
+module.exports.getSingleBlogByID = async (req,res) =>{
   const {id} = req.params;
   const blog = await Blog.findById(id).populate('user').sort({_id: -1}).exec();
-  blog.views += 1;
   await blog.save();
   console.log(blog);
   res.status(200).json({
