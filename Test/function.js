@@ -3,13 +3,11 @@ const Blog = require("../module/blog");
 
 DBConnection();
 
-async function huhu(){
-const title = "Goku Black Skin arrives at Item Shop in Fortnite";
-const newtitle = title.replace(/ /g,"-");
-const blog = await Blog.find({title: "Goku Black Skin arrives at Item Shop in Fortnite"});
-console.log(blog);
-}
-// huhu();
-const title = "Goku-Black-Skin-arrives-at-Item-Shop-in-Fortnite";
-const newtitle = title.replace(/-/g," ");
-console.log(newtitle);
+const getSingleBlogByTitle = async (title) =>{
+
+    const newTitle = title.replace(/%/g," ");
+    const blog = await Blog.findOne({title: newTitle});
+    console.log(blog);
+    
+  }
+getSingleBlogByTitle("Swing%into%Action%with%the%Spider-Man%2%PS5%Bundle!");
