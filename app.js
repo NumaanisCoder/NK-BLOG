@@ -16,7 +16,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 
-const urlSupported = ['https://nkblogs.netlify.app', 'http://nkblogs.netlify.app', 'http://localhost:3000', 'http://localhost:3001'];
+const urlSupported = ['https://nkblogs.netlify.app', 'http://nkblogs.netlify.app', 'http://localhost:3000', 'http://localhost:3001',' http://192.168.1.13:3000'];
    
 app.use(cors({
     origin: urlSupported,
