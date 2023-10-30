@@ -14,6 +14,6 @@ router.route('/userblogs/delete/:id').delete(deleteUserBlog);
 router.route('/userblogs/update/:id').put(upload.single('image'),updateUserBlog);
 router.route('/blog/:title').post(getSingleBlogByTitle); 
 router.route('/blog/id/:id').get(getSingleBlogByID); 
-router.route('/blog/query').post(homecontent);
+router.route('/blog/search/query').post(homecontent);
 
 module.exports = router;

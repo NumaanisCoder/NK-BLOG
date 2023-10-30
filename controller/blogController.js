@@ -95,8 +95,10 @@ module.exports.getSingleBlogByTitle = async (req,res) =>{
   const {title} = req.params;
   const newTitle = title.replace(/~/g," ");
   const blog = await Blog.findOne({title: newTitle}).populate('user').sort({_id: -1}).exec();
-  blog.views += 1;
-  await blog.save();
+  if(blog){
+    blog.views += 1;
+    await blog.save();
+  }
   res.status(200).json({
     success: true,
     blog: blog
