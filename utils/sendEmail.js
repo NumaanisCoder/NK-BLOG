@@ -32,7 +32,7 @@ module.exports.send_otpFunc = async (email, otp) => {
     <body style="background-color: black;">
     <div style="text-align: center;">
     <br>
-    <h1 style="color: red;"> NK BLOGS </h1> 
+    <h1 style="color: #910FE7;"> NK BLOGS </h1> 
      
     <h2 style="background-color: aliceblue;">OTP Verification</h2>
     <p style="color: aliceblue;">
@@ -47,7 +47,7 @@ module.exports.send_otpFunc = async (email, otp) => {
   await mailTransporter.sendMail(details);
 }
 
-module.exports.resetPassword = async function(user){
+async function resetPassword(user) {
   const token = await sendToken(user);
  
   const details = {
@@ -58,7 +58,7 @@ module.exports.resetPassword = async function(user){
     <body style="background-color: black;">
     <div style="text-align: center;">
     <br>
-    <h1 style="color: red;"> NK BLOGS </h1> 
+    <h1 style="color: #910FE7;"> NK BLOGS </h1> 
      
     <h2 style="background-color: aliceblue;">RESET LINK</h2>
     <p style="color: aliceblue;">
@@ -66,8 +66,8 @@ module.exports.resetPassword = async function(user){
    <br>
     <p style="font-size: x-large;">👇</p>
 
-    <button style="border: 2px solid red; background-color: black; padding: 4px; ">
-        <a style="text-decoration: none; padding: 12px; color: red;" href= "https://nkblogs.netlify/resetpassword/${token}">Reset Password</a>
+    <button style="border: 2px solid #910FE7; background-color: black; padding: 4px; ">
+        <a style="text-decoration: none; padding: 12px; color: #910FE7;" href= "https://contentcanvas.netlify.app/resetpassword/${token}">Reset Password</a>
     </button>
   
         
@@ -90,7 +90,7 @@ module.exports.send_otpFunc = async (email, otp) => {
     <body style="background-color: black;">
     <div style="text-align: center;">
     <br>
-    <h1 style="color: red;"> NK BLOGS </h1> 
+    <h1 style="color: #910FE7;"> NK BLOGS </h1> 
      
     <h2 style="background-color: aliceblue;">OTP Verification</h2>
     <p style="color: aliceblue;">
@@ -105,3 +105,4 @@ module.exports.send_otpFunc = async (email, otp) => {
   await mailTransporter.sendMail(details);
 }
 
+module.exports.resetPassword = resetPassword;

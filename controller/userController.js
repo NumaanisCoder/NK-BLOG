@@ -3,7 +3,7 @@ const ErrorHandler = require("../utils/ErrorHandler");
 const bcrypt = require("bcrypt");
 const { sendToken, sendEcryptedEmailToken } = require("../utils/sendToken");
 const jwt = require("jsonwebtoken");
-const resetPassword = require("../utils/sendEmail");
+const {resetPassword} = require("../utils/sendEmail");
 
 const { send_otpFunc } = require("../utils/OTPVerification");
 
@@ -133,6 +133,7 @@ module.exports.loginByToken = async (req, res) => {
 
 module.exports.sendOtp = async (req, res) => {
   const { email } = req.body;
+  console.log(email)
   const user = await User.findOne({ email: email });
   if (user) {
     console.log(user);

@@ -69,17 +69,30 @@ module.exports.deleteUserBlog = async (req,res,next) => {
     success: true
   })
 }
-module.exports.updateUserBlog = async (req,res,next) => {
-  const {id} = req.params;
-  console.log(id);
+module.exports.updateUserBlog = async (req, res, next) => {
+  const { id } = req.params;
+  const { title, content, category } = req.body;
+  let image; // declare image variable
+
   const imagefile = req.file;
-  image = await uploadImage(imagefile.buffer, imagefile.originalname);
-  const {title,content, category} = req.body;
-  await Blog.findByIdAndUpdate(id,{title,image,content,category});
+
+  if (imagefile) {
+    image = await uploadImage(imagefile.buffer, imagefile.originalname);
+  }
+
+  // Update the blog, including the image if it exists
+  const updatedFields = { title, content, category };
+  if (image) {
+    updatedFields.image = image;
+  }
+
+  await Blog.findByIdAndUpdate(id, updatedFields);
+
   res.json({
-    success: true
-  })
-}
+    success: true,
+  });
+};
+
 
 module.exports.getSingleBlogByID = async (req,res) =>{
   const {id} = req.params;
