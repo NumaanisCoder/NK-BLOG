@@ -16,7 +16,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 
-const urlSupported = ['https://contentcanvas.netlify.app', 'http://localhost:3000','http://192.168.1.13:3000'];
+const urlSupported = ['https://contentcanvas.netlify.app', 'http://localhost:3000','http://192.168.1.13:3000','http://192.168.1.8:3000'];
    
 app.use(cors({
     origin: urlSupported,

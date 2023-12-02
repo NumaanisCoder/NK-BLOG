@@ -3,9 +3,7 @@ const ErrorHandler = require("../utils/ErrorHandler");
 const bcrypt = require("bcrypt");
 const { sendToken, sendEcryptedEmailToken } = require("../utils/sendToken");
 const jwt = require("jsonwebtoken");
-const {resetPassword} = require("../utils/sendEmail");
-
-const { send_otpFunc } = require("../utils/OTPVerification");
+const { send_otpFunc, sendResetTokenMail } = require("../utils/OTPVerification");
 
 
 module.exports.verify_otp = async (req,res) => 
@@ -133,21 +131,12 @@ module.exports.loginByToken = async (req, res) => {
 
 module.exports.sendOtp = async (req, res) => {
   const { email } = req.body;
-  console.log(email)
-  const user = await User.findOne({ email: email });
-  if (user) {
-    console.log(user);
-    await resetPassword(user);
-    res.status(200).json({
-      success: true,
-      message: `Otp sent successfully to ${user.email}`,
-    });
-  } else {
-    res.json({
-      success: false,
-      message: `${email} is not registered`,
-    });
-  }
+  const emailToken = jwt.sign({email: email},  "cristianoronaldogreatestofalltime");
+  sendResetTokenMail(email,emailToken);
+  res.status(200).json({
+    success: true,
+    message: "sent!"
+  })
 };
 
 module.exports.VerifyUser = async (req, res) => {
@@ -164,20 +153,32 @@ module.exports.VerifyUser = async (req, res) => {
 
 module.exports.updateUserPassword = async (req, res) => {
   const { token } = req.params;
-  const { id } = jwt.verify(token, process.env.JWT_SECRET_KEY);
-  console.log(id);
+  const { email } = jwt.verify(token, process.env.JWT_SECRET_KEY);
   const { password } = req.body;
-  console.log(password);
-  await User.findByIdAndUpdate(
-    id,
-    { password: await bcrypt.hash(password, 12) },
-    { new: true }
-  );
+  console.log("email : ",email)
+  console.log("password : ",password);
+  const user = await User.findOne({email: email});
+  user.password = await bcrypt.hash(password,12);
+  await user.save();
   res.status(200).json({
     success: true,
     message: "password Updated sucessfully",
   });
 };
 
+module.exports.resendOTPFunc = async (req,res) =>{
+  const {Emailtoken} = req.params;
+  const { email } = jwt.verify(Emailtoken, "cristianoronaldogreatestofalltime");
+  console.log(email);
+  const newotp = Math.floor(Math.random() * 999999 + 100000);
+  const user = await User.findOne({email: email});
+  user.otp = newotp;
+  await user.save();
+  send_otpFunc(email,newotp);
+  res.status(200).json({
+    success: true,
+    message: "Otp resend!!"
+  })
+}
 
 
