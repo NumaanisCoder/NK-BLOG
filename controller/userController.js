@@ -132,7 +132,7 @@ module.exports.loginByToken = async (req, res) => {
 module.exports.sendOtp = async (req, res) => {
   const { email } = req.body;
   const emailToken = jwt.sign({email: email},  "cristianoronaldogreatestofalltime");
-  sendResetTokenMail(email,emailToken);
+  await sendResetTokenMail(email,emailToken);
   res.status(200).json({
     success: true,
     message: "sent!"

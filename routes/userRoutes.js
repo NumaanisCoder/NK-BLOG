@@ -1,5 +1,5 @@
 const express = require('express');
-const { createUser, login, userprofile, logout, loginByToken, sendOtp, VerifyUser, updateUserPassword, verify_otp, send_otp, resendOTPFunc } = require('../controller/userController');
+const { createUser, login, userprofile, logout, loginByToken, sendOtp, VerifyUser, updateUserPassword, verify_otp, resendOTPFunc } = require('../controller/userController');
 
 const router = express.Router();
 
