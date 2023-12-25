@@ -22,6 +22,9 @@ const blogSchema = new Schema({
     user:{
         type: mongoose.Types.ObjectId, ref:'user'
     },
+    summaruy:{
+        type: String
+    },
     createdAt:{
         type: Number,
         default: Date.now()
