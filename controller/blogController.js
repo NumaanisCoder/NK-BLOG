@@ -72,6 +72,7 @@ module.exports.deleteUserBlog = async (req,res,next) => {
 module.exports.updateUserBlog = async (req, res, next) => {
   const { id } = req.params;
   const { title, content, category,summary } = req.body;
+  console.log(summary);
   let image; // declare image variable
 
   const imagefile = req.file;
