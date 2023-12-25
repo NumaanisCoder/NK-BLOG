@@ -11,7 +11,7 @@ const imagefile = req.file;
   const { token } = req.params;
   const { id } = jwt.verify(token, process.env.JWT_SECRET_KEY);
   const user = await User.findById(id);
-  const { title, content, category} = req.body;
+  const { title, content, category,summary} = req.body;
   image = await uploadImage(imagefile.buffer, imagefile.originalname);
   if(!category){
     category = 'Personal thought'
@@ -19,7 +19,7 @@ const imagefile = req.file;
   if(!title || !content || !category || !image){
     return next(new ErrorHandler(409, "Incomplete Blog Values"))
   }
-  const blog = new Blog({ title, image, content, category });
+  const blog = new Blog({ title, image, content, category,summary });
   blog.user = user;
   user.blogs.push(blog);
   await blog.save();
@@ -71,7 +71,7 @@ module.exports.deleteUserBlog = async (req,res,next) => {
 }
 module.exports.updateUserBlog = async (req, res, next) => {
   const { id } = req.params;
-  const { title, content, category } = req.body;
+  const { title, content, category,summary } = req.body;
   let image; // declare image variable
 
   const imagefile = req.file;
@@ -81,7 +81,7 @@ module.exports.updateUserBlog = async (req, res, next) => {
   }
 
   // Update the blog, including the image if it exists
-  const updatedFields = { title, content, category };
+  const updatedFields = { title, content, category,summary };
   if (image) {
     updatedFields.image = image;
   }
