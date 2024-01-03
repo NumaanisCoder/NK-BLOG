@@ -16,7 +16,7 @@ const blogSchema = new Schema({
     },
     category: {
         type: String,
-        enum: ['Technology','Programming','Wildlife','Education','Personal thought','Travel','Video Games','Anime','Movie','Sports','News'],
+        enum: ['Technology','Programming','Wildlife','Education','Personal thought','Travel','Video Games','Anime','Movie','Sports','News','Tutorial'],
         required: true
     },
     user:{
