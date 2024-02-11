@@ -16,4 +16,6 @@ router.route('/blog/:title').post(getSingleBlogByTitle);
 router.route('/blog/id/:id').get(getSingleBlogByID); 
 router.route('/blog/search/query').post(homecontent);
 
+
+
 module.exports = router;
